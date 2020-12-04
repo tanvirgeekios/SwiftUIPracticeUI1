@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @State var search = ""
+    @State var goToDetaile = false
     var body: some View {
         VStack{
             //top
@@ -58,7 +59,9 @@ struct HomeView: View {
                         Text("Everyone's favourite Dounut in Glaze")
                             .fontWeight(.heavy)
                             .foregroundColor(Color.black.opacity(0.6))
-                        Button(action: {}, label: {
+                        Button(action: {
+                            goToDetaile.toggle()
+                        }, label: {
                             HStack(alignment:.center){
                                 Text("find out")
                                     .fontWeight(.heavy)
@@ -88,16 +91,12 @@ struct HomeView: View {
                         ItemView(item: item)
                     }
                     
-                }
+                }.padding(.top,10)
             }
-            
-          
-            
-            
-            
-            
-            
         }.padding(.top,10)
+        .fullScreenCover(isPresented: $goToDetaile, content: {
+            DetailView()
+        })
         
     }
 }
